@@ -1,0 +1,53 @@
+.main{
+    padding-top: 60px;
+    margin: 20px auto;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    background-color: white;
+    border-radius: 5px;
+}
+.items{
+    width: 450px;
+    height: 550px;
+    border: 1px solid black;
+    overflow: hidden;
+    /* padding: 15px; */
+    margin: 40px 20px;
+    background-color: white;
+}
+.img{
+    width: 460px;
+    height: 400px;
+     display: block;
+     object-fit: none;
+}
+.name{
+    font-size: 30px;
+    margin: 30px 30px;
+    width: 460px;
+    height: 150px;
+    font-weight: bolder;
+    font-style: oblique;
+}
+.table{
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: auto;
+    
+}
+th, td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+
+  }
+  td + td, th + th {
+    border-left: 2px solid #a1a1a1; /* Change the color as needed */
+  }
+  button{
+    background-color: blue;
+    color: white;
+  }
