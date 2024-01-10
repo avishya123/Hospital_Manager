@@ -1,15 +1,11 @@
-
-
-
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import CustomNavbar from '../Navbar';
+// import CustomNavbar from '../Navbar';
 
 function Showdepartment() {
   const [users, setUsers] = useState([]);
   const [image, setImage] = useState({});
-
   useEffect(() => {
     axios.get("http://localhost:5000/show")
       .then(result => {
@@ -33,16 +29,16 @@ function Showdepartment() {
   };
 
   return (
-    <div>
-    <div><CustomNavbar/></div>
-    <div className='d-flex vh-90 bg-primary justify-content-center align-items-center vw-100 p-3'>
+    <div >
+    {/* <div><CustomNavbar/></div> */}
+    <div  className='d-flex vh-90 bg-primary justify-content-center align-items-center  p-3 w-100'>
       <div className='w-100 bg-white rounded p-3 font-size-25 m-5 '>
         <Link to="/create" className='btn btn-success'>Add</Link>
         <table className='table p-3'>
           <thead>
             <th>Department Name</th>
-            <th>Year Founded</th>
-            <th>Discription</th>
+            {/* <th>Year Founded</th> */}
+            {/* <th>Discription</th> */}
             <th>Department Head</th>
             <th>Image</th>
             <th>Action</th>
@@ -50,15 +46,15 @@ function Showdepartment() {
           <tbody>
             {users.map((user) => (
               <tr key={user._id}>
-                <td>{user.name}</td>
-                <td>{user.year}</td>
-                <td>{user.discription}</td>
-                <td>{user.head}</td>
+                <td><Link to={`/profiledept/${user.name}`}>{user.name}</Link></td>
+                {/* <td>{user.year}</td> */}
+                {/* <td>{user.discription}</td> */}
+                <td><Link to={`/profilehead/${user.head}`}>{user.head}</Link></td>
                 <td >
                   {image && image[user._id] && <img style={{height:'200px',width:'270px'}}src={`http://localhost:5000/images/${image[user._id]}`} alt="Uploaded" />}
                 </td>
                 <td>
-                  <Link to={`/update/${user._id}`} className='btn btn-success p-3'>Edit</Link>
+                  <Link to={`/update/${user._id}`} ><i style={{height:'20px',width:'20px'}} class="fa-sharp fa-solid fa-pen-to-square "></i></Link>
                 </td>
                 <td>
                   <button className='btn btn-danger p-3' onClick={() => handleDelete(user._id)}>Delete</button>

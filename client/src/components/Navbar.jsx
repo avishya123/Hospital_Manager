@@ -6,11 +6,13 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 
 function CustomNavbar() {
   return (
-    <div style={{marginTop:'0'}}>
+    <div style={{marginTop:'0',fontWeight:'bold'}}>
       {[false].map((expand) => (
         <Navbar key={expand} expand={expand} className="bg-body-primary mb-3 vw-100 p-3 fixed-top bg-primary ">
           <Container fluid>
-            <Navbar.Brand href="#">MANAGER</Navbar.Brand>
+            <Navbar.Brand href="#" style={{wordSpacing:'5px'}}> <span style={{paddingRight:'20px'}}><i class="fa-solid fa-hospital"></i></span>
+ <b>CRESCENT HOSPITAL</b></Navbar.Brand>
+            <Nav.Link  href="/dashboard">DASHBOARD</Nav.Link>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}

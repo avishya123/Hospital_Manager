@@ -37,17 +37,28 @@ const upload=multer({
     storage: storage
 })
 
-
-app.post('/logins',(req,res)=>{
-    LoginModel.create(req.body)
-    .then(user=>res.json(user))
-    .catch(err=>res.json(err))
-}),
-app.get('/login',(req,res)=>{
-    LoginModel.find()
-    .then(user=>{res.json(user)})
-    .catch(err=>res.json(err))
-}),
+// app.post('/login',(req,res)=>{
+//     LoginModel.findOne({email:email})
+//     .then(user=>res.json({status:'success',role:user.role}))
+//     .catch(err=>res.json(err))
+// }),
+app.post('/login', (req, res) => {
+    const { email, password } = req.body;
+  
+    LoginModel.findOne({ email: email, password: password })
+      .then(user => {
+        if (user) {
+          res.json({ status: 'success', role: user.role });
+        } else {
+          res.status(401).json({ status: 'failure', message: 'Invalid email or password' });
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        res.status(500).json({ status: 'error', message: 'Internal Server Error' });
+      });
+  });
+  
 app.post('/createdept',upload.single('file'),(req,res)=>{
     const {name,year,discription,head} = req.body;
     DeptModel.create({image: req.file.filename, ...req.body})
@@ -121,12 +132,29 @@ app.put('/updatehead/:id',upload.single('file'),(req,res)=>{
     .then(user=>res.json(user))
     .catch(err=>res.json(err))
 }),
+
 app.delete('/deletehead/:id',(req,res)=>{
     const id = req.params.id; 
     HeadModel.findByIdAndDelete({_id:id})
     .then(user=>res.json(user))
     .catch(err=>res.json(err))
 }),
+//profiles
+app.get('/showprofilehead/:name', (req, res) => {
+    const {name } = req.params;
+    // const id = req.params.id; 
+    HeadModel.findOne({ name: name })
+      .then(user => res.json(user))
+      .catch(err => res.json(err));
+});
+app.get('/showprofiledept/:dept', (req, res) => {
+    const { dept } = req.params;
+    // const id = req.params.id; 
+    DeptModel.findOne({ name: dept })
+        .then(department => res.json(department))
+        .catch(err => res.json(err));
+});
+
 
 //employee
 app.post('/createemp',upload.single('file'),(req,res)=>{

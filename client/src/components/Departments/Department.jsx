@@ -55,6 +55,15 @@ function Department() {
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
+            {/* <select name="" id="" value={name} onChange={(e) => setName(e.target.value)}>
+              <option value=""></option>
+              <option value="">CARDIOLOGY</option>
+              <option value="">ENT</option>
+              <option value="">NEUROLOGY</option>
+              <option value="">ICU</option>
+              <option value="">INPATIENT</option>
+              <option value="">OUTPATIENT</option>
+            </select> */}
           </div>
                       <div className='mb-2'>
            <label>year founded</label>

@@ -10,6 +10,7 @@ export default function Updatehead() {
     const [dept,setDept] = useState()
     const [discription,setDiscription] = useState()
     const { id } = useParams();
+
     const navigate = useNavigate()
     useEffect (()=>{
         axios.get("http://localhost:5000/showhead/"+id)
@@ -40,6 +41,7 @@ export default function Updatehead() {
   })
   .catch(err => console.log(err));
     }
+  
   return (
     <div>
    <div className='d-flex vh-100 bg-primary justify-content-center align-items-center vw-100'>
